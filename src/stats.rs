@@ -35,15 +35,15 @@ impl Stats {
             .get("stats")
             .ok_or(anyhow!("Couldn't get stats key"))?;
 
-        let broken_section = value
-            .get("minecraft:broken")
-            .ok_or(anyhow!("Couldn't get value for given key"))?;
-        let broken = Self::parse_section(broken_section.clone())?;
+        let broken = match value.get("minecraft:broken") {
+            Some(section) => Self::parse_section(section.clone())?,
+            None => Vec::new(),
+        };
 
-        let crafted_section = value
-            .get("minecraft:crafted")
-            .ok_or(anyhow!("Couldn't get value for given key"))?;
-        let crafted = Self::parse_section(crafted_section.clone())?;
+        let crafted = match value.get("minecraft:crafted") {
+            Some(section) => Self::parse_section(section.clone())?,
+            None => Vec::new(),
+        };
 
         Ok(Stats { broken, crafted })
     }
