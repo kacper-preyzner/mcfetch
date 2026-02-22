@@ -7,6 +7,13 @@
 </p>
 
 <p align="center">
+  <a href="../../releases/latest"><img src="https://img.shields.io/github/v/release/kacper-preyzner/mcfetch?style=flat-square" alt="Latest Release"></a>
+  <img src="https://img.shields.io/github/license/kacper-preyzner/mcfetch?style=flat-square" alt="License">
+  <img src="https://img.shields.io/github/languages/top/kacper-preyzner/mcfetch?style=flat-square" alt="Language">
+  <img src="https://img.shields.io/github/repo-size/kacper-preyzner/mcfetch?style=flat-square" alt="Repo Size">
+</p>
+
+<p align="center">
   A command-line tool that displays your Minecraft Java Edition player statistics in a neofetch-style format.
 </p>
 
@@ -63,7 +70,7 @@ Minecraft saves are read from `%APPDATA%\.minecraft\saves`.
 Requires the [Rust toolchain](https://rustup.rs/) (1.85+).
 
 ```sh
-git clone https://github.com/prezes/mcfetch.git
+git clone https://github.com/kacper-preyzner/mcfetch.git
 cd mcfetch
 cargo install --path .
 ```
