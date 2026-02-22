@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="../../releases/latest"><img src="https://img.shields.io/github/v/release/kacper-preyzner/mcfetch?style=flat-square" alt="Latest Release"></a>
-  <img src="https://img.shields.io/github/license/kacper-preyzner/mcfetch?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/license-WTFPL-brightgreen?style=flat-square" alt="License">
   <img src="https://img.shields.io/github/languages/top/kacper-preyzner/mcfetch?style=flat-square" alt="Language">
   <img src="https://img.shields.io/github/repo-size/kacper-preyzner/mcfetch?style=flat-square" alt="Repo Size">
 </p>
