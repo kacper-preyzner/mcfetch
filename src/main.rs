@@ -49,45 +49,105 @@ fn run_display() -> anyhow::Result<()> {
         display::separator(title.len() + 16),
     ];
 
-    if let Some(most_crafted) = stats.most_crafted() {
+    // Mined
+    if let Some(top) = Stats::most(&stats.mined) {
+        lines.push(display::stat_line(
+            "Most Mined",
+            &format!("{} ({}x)", top.name, top.count),
+        ));
+    }
+    lines.push(display::stat_line(
+        "Total Mined",
+        &format!("{}", Stats::total(&stats.mined)),
+    ));
+
+    // Crafted
+    if let Some(top) = Stats::most(&stats.crafted) {
         lines.push(display::stat_line(
             "Most Crafted",
             &format!(
                 "{} ({}x, {:.2} stacks)",
-                most_crafted.name,
-                most_crafted.count,
-                most_crafted.count.stacks()
+                top.name,
+                top.count,
+                top.count.stacks()
             ),
         ));
     }
-    lines.push(display::stat_line(
-        "Total Crafted",
-        &format!(
-            "{} ({:.2} stacks)",
-            stats.total_crafted(),
-            stats.total_crafted().stacks()
-        ),
-    ));
 
-    if let Some(most_broken) = stats.most_broken() {
+    // Used
+    if let Some(top) = Stats::most(&stats.used) {
+        lines.push(display::stat_line(
+            "Most Used",
+            &format!("{} ({}x)", top.name, top.count),
+        ));
+    }
+
+    // Broken
+    if let Some(top) = Stats::most(&stats.broken) {
         lines.push(display::stat_line(
             "Most Broken",
+            &format!("{} ({}x)", top.name, top.count),
+        ));
+    }
+
+    // Picked up
+    if let Some(top) = Stats::most(&stats.picked_up) {
+        lines.push(display::stat_line(
+            "Most Picked Up",
             &format!(
                 "{} ({}x, {:.2} stacks)",
-                most_broken.name,
-                most_broken.count,
-                most_broken.count.stacks()
+                top.name,
+                top.count,
+                top.count.stacks()
             ),
         ));
     }
+
+    // Dropped
+    if let Some(top) = Stats::most(&stats.dropped) {
+        lines.push(display::stat_line(
+            "Most Dropped",
+            &format!("{} ({}x)", top.name, top.count),
+        ));
+    }
+
+    // Killed
+    if let Some(top) = Stats::most(&stats.killed) {
+        lines.push(display::stat_line(
+            "Most Killed",
+            &format!("{} ({}x)", top.name, top.count),
+        ));
+    }
     lines.push(display::stat_line(
-        "Total Broken",
-        &format!(
-            "{} ({:.2} stacks)",
-            stats.total_broken(),
-            stats.total_broken().stacks()
-        ),
+        "Mob Kills",
+        &format!("{}", Stats::total(&stats.killed)),
     ));
+
+    // Custom stats
+    if let Some(play_ticks) = stats.custom_stat("play_time") {
+        let hours = play_ticks / 20 / 3600;
+        let mins = (play_ticks / 20 % 3600) / 60;
+        lines.push(display::stat_line(
+            "Play Time",
+            &format!("{}h {}m", hours, mins),
+        ));
+    }
+
+    if let Some(walk_cm) = stats.custom_stat("walk_one_cm") {
+        let km = walk_cm as f64 / 100_000.0;
+        lines.push(display::stat_line(
+            "Distance Walked",
+            &format!("{:.2} km", km),
+        ));
+    }
+
+    if let Some(deaths) = stats.custom_stat("deaths") {
+        lines.push(display::stat_line("Deaths", &format!("{}", deaths)));
+    }
+
+    if let Some(jumps) = stats.custom_stat("jump") {
+        lines.push(display::stat_line("Jumps", &format!("{}", jumps)));
+    }
 
     print!("\n{}", display::render(&lines));
     Ok(())
