@@ -1,7 +1,4 @@
-use std::{
-    fs,
-    path::PathBuf,
-};
+use std::{fs, path::PathBuf};
 
 use serde::{Deserialize, Serialize};
 
@@ -26,7 +23,8 @@ pub fn load() -> Config {
 }
 
 pub fn save(config: &Config) -> anyhow::Result<()> {
-    let path = config_path().ok_or_else(|| anyhow::anyhow!("Could not determine config directory"))?;
+    let path =
+        config_path().ok_or_else(|| anyhow::anyhow!("Could not determine config directory"))?;
 
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent)?;
