@@ -7,11 +7,11 @@
 </p>
 
 <p align="center">
-  A command-line tool that displays your Minecraft Java Edition player statistics in a neofetch-style format, complete with a Braille art creeper.
+  A command-line tool that displays your Minecraft Java Edition player statistics in a neofetch-style format.
 </p>
 
 <p align="center">
-  <img src="screenshot.png" alt="mcfetch output" width="600">
+  <img src="images/screenshot.png" alt="mcfetch output" width="600">
 </p>
 
 ---
