@@ -107,7 +107,12 @@ fn run_display() -> anyhow::Result<()> {
     if let Some(top) = Stats::most(&stats.dropped) {
         lines.push(display::stat_line(
             "Most Dropped",
-            &format!("{} ({}x)", top.name, top.count),
+            &format!(
+                "{} ({}x, {:.2} stacks)",
+                top.name,
+                top.count,
+                top.count.stacks()
+            ),
         ));
     }
 
