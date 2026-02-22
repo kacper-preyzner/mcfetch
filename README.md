@@ -84,4 +84,4 @@ cargo install --path .
 
 ## License
 
-MIT
+WTFPL
